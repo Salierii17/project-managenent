@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-
 import java.sql.Timestamp;
 
 import jakarta.persistence.Entity;
@@ -23,36 +22,47 @@ public class Lokasi {
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getNama_lokasi() {
         return nama_lokasi;
     }
+
     public void setNama_lokasi(String nama_lokasi) {
         this.nama_lokasi = nama_lokasi;
     }
+
     public String getNegara() {
         return negara;
     }
+
     public void setNegara(String negara) {
         this.negara = negara;
     }
+
     public String getProvinsi() {
         return provinsi;
     }
+
     public void setProvinsi(String provinsi) {
         this.provinsi = provinsi;
     }
+
     public String getKota() {
         return kota;
     }
+
     public void setKota(String kota) {
         this.kota = kota;
     }
+
     public Timestamp getCreate_at() {
         return create_at;
     }
+
     public void setCreate_at(Timestamp create_at) {
         this.create_at = create_at;
     }

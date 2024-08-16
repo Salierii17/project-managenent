@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
-import java.security.Timestamp;
+
+import java.sql.Timestamp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class lokasi {
+public class Lokasi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -17,7 +18,6 @@ public class lokasi {
     private String provinsi;
     private String kota;
     private Timestamp create_at;
-
 
     // Getters and Setters
     public Integer getId() {
@@ -56,6 +56,4 @@ public class lokasi {
     public void setCreate_at(Timestamp create_at) {
         this.create_at = create_at;
     }
-
-
 }

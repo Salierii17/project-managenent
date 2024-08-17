@@ -9,8 +9,8 @@ class Home extends BaseController
 {
     public function index()
     {
-        $lokasiModel = new LokasiModel();
-        $proyekModel = new ProyekModel();
+        $lokasiModel = new LokasiModel;
+        $proyekModel = new ProyekModel;
 
         $data['lokasi_list'] = $lokasiModel->findAll();
         $data['proyek_list'] = $proyekModel->findAll();

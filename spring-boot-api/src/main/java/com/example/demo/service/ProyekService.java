@@ -10,7 +10,7 @@ import com.example.demo.repository.ProyekRepo;
 
 @Service
 public class ProyekService {
-    
+
     @Autowired
     ProyekRepo proyekRepo;
 

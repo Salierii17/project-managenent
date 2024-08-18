@@ -2,7 +2,6 @@ package com.example.demo.model;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,13 +23,11 @@ public class Proyek {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
-   private String nama_proyek;
+    private String nama_proyek;
     private String client;
 
-    @JsonFormat(pattern="dd MMMM yyyy")
     private LocalDate tgl_mulai;
 
-    @JsonFormat(pattern="dd MMMM yyyy")
     private LocalDate tgl_selesai;
 
     private String pimpinan_proyek;

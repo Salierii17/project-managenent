@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8082")
+@CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping("/proyek")
 public class ProyekController {
 
@@ -29,7 +29,6 @@ public class ProyekController {
 
         @PostMapping
         public ResponseEntity<Proyek> createProyek(@RequestBody Proyek proyek) {
-                // Logic to save proyek
                 Proyek savedProyek = proyekService.saveProyek(proyek);
                 return new ResponseEntity<>(savedProyek, HttpStatus.CREATED);
         }

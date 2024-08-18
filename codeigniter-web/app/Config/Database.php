@@ -27,9 +27,9 @@ class Database extends Config
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
-        'username'     => '',
+        'username'     => 'root',
         'password'     => '',
-        'database'     => '',
+        'database'     => 'spring_api',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
@@ -44,9 +44,9 @@ class Database extends Config
         'port'         => 3306,
         'numberNative' => false,
         'dateFormat'   => [
-            'date'     => 'Y-m-d',
-            'datetime' => 'Y-m-d H:i:s',
-            'time'     => 'H:i:s',
+            'date'     => 'dd-MMMM-yyyy',
+            'datetime' => 'dd MMMM yyyy HH:mm:ss',
+            'time'     => 'HH:mm:ss',
         ],
     ];
 

@@ -9,12 +9,3 @@ import com.example.demo.model.Proyek;
 public interface ProyekRepo extends JpaRepository<Proyek, Integer> {
 
 }
-
-
-
-
-
-
-
-
-

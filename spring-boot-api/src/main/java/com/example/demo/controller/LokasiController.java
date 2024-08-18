@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8082")
+@CrossOrigin(origins = "http://localhost:8081")
 @RequestMapping("/lokasi")
 public class LokasiController {
         @Autowired
@@ -35,28 +35,24 @@ public class LokasiController {
 
         @PutMapping("/{id}")
         public ResponseEntity<Lokasi> updateLokasi(@PathVariable Integer id, @RequestBody Lokasi lokasi) {
-                // Logic to update lokasi
                 Lokasi updatedLokasi = lokasiService.updateLokasi(id, lokasi);
                 return new ResponseEntity<>(updatedLokasi, HttpStatus.OK);
         }
 
         @DeleteMapping("/{id}")
         public ResponseEntity<Void> deleteLokasi(@PathVariable Integer id) {
-                // Logic to delete lokasi
                 lokasiService.deleteLokasi(id);
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
         @GetMapping
         public ResponseEntity<List<Lokasi>> getAllLokasi() {
-                // Logic to get all lokasi
                 List<Lokasi> lokasiList = lokasiService.getAllLokasi();
                 return new ResponseEntity<>(lokasiList, HttpStatus.OK);
         }
 
         @GetMapping("/{id}")
         public ResponseEntity<Lokasi> getLokasiById(@PathVariable Integer id) {
-                // Logic to get lokasi by id
                 Lokasi lokasi = lokasiService.getLokasiById(id);
                 return new ResponseEntity<>(lokasi, HttpStatus.OK);
         }

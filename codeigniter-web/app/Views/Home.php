@@ -149,9 +149,8 @@
                     }
                 }
 
-                // Call the function with 'proyek' to show the default table
                 document.addEventListener('DOMContentLoaded', function() {
-                    showTable('proyek');
+                    showTable('lokasi');
                 });
             </script>
 

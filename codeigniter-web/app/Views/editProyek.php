@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit Proyek</title>
     <style>
         body {
             display: flex;
@@ -83,29 +83,29 @@
 
 <body>
     <div class="card">
-
-        <h1>Add New Proyek</h1>
-        <form id="proyek-form" action="<?= site_url('home/addProyek/') ?>" method="post">
+        <h1>Edit Proyek</h1>
+        <form id="proyek-form" action="<?= site_url('home/editProyek/' . $proyek['id']) ?>" method="post">
             <label for="nama_proyek">Nama Proyek:</label>
-            <input type="text" id="nama_proyek" name="nama_proyek" required>
+            <input type="text" id="nama_proyek" name="nama_proyek" value="<?= $proyek['nama_proyek'] ?>" required>
 
             <label for="client">Client:</label>
-            <input type="text" id="client" name="client" required>
+            <input type="text" id="client" name="client" value="<?= $proyek['client'] ?>" required>
 
             <label for="tgl_mulai">Tanggal Mulai:</label>
-            <input type="date" id="tgl_mulai" name="tgl_mulai" required>
+            <input type="date" id="tgl_mulai" name="tgl_mulai" value="<?= date('Y-m-d', strtotime($proyek['tgl_mulai'])) ?>" required oninput="updateFormattedDate('tgl_mulai', 'tgl_mulai_formatted')">
 
             <label for="tgl_selesai">Tanggal Selesai:</label>
-            <input type="date" id="tgl_selesai" name="tgl_selesai" required>
+            <input type="date" id="tgl_selesai" name="tgl_selesai" value="<?= date('Y-m-d', strtotime($proyek['tgl_selesai'])) ?>" required oninput="updateFormattedDate('tgl_selesai', 'tgl_selesai_formatted')">
 
             <label for="pimpinan_proyek">Pimpinan Proyek:</label>
-            <input type="text" id="pimpinan_proyek" name="pimpinan_proyek" required>
+            <input type="text" id="pimpinan_proyek" name="pimpinan_proyek" value="<?= $proyek['pimpinan_proyek'] ?>" required>
 
             <label for="keterangan">Keterangan:</label>
-            <textarea id="keterangan" name="keterangan"></textarea>
+            <textarea id="keterangan" name="keterangan" required><?= $proyek['keterangan'] ?></textarea>
 
-            <input type="submit" value="Add Proyek">
+            <input type="submit" value="Update Proyek">
         </form>
+
         <a href="<?= site_url('/') ?>">Back to Home</a>
     </div>
     <script>
@@ -115,6 +115,7 @@
                 form.addEventListener('submit', function(event) {
                     event.preventDefault();
 
+                    const id = <?= $proyek['id'] ?>; 
                     const data = {
                         nama_proyek: document.getElementById('nama_proyek').value,
                         client: document.getElementById('client').value,
@@ -126,22 +127,25 @@
 
                     console.log('Form Data:', data);
 
-                    fetch('http://localhost:8082/proyek', {
-                            method: 'POST',
+                    fetch(`http://localhost:8082/proyek/${id}`, {
+                            method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
                             body: JSON.stringify(data)
                         })
-                        .then(response => response.json())
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok.');
+                            }
+                            return response.json();
+                        })
                         .then(result => {
                             console.log('Response:', result);
-                            if (result.success) { 
-                                alert('Failed to add proyek');
-
-                                form.reset(); 
+                            if (result.success) {
+                                alert('Failed to update proyek');
                             } else {
-                                alert('Proyek added');
+                                alert('Proyek updated');
                             }
                         })
                         .catch(error => {

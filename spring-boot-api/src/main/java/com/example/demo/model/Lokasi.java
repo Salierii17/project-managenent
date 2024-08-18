@@ -6,7 +6,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,22 +21,13 @@ public class Lokasi {
     private String negara;
     private String provinsi;
     private String kota;
-    
+
     @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd MMMM yyyy HH:mm:ss")
     private LocalDateTime created_at;
-    
+
     public Lokasi() {
     }
-
-    // Constructor
-    // public Lokasi(String nama_lokasi, String negara, String provinsi, String kota) {
-    //     this.nama_lokasi = nama_lokasi;
-    //     this.negara = negara;
-    //     this.provinsi = provinsi;
-    //     this.kota = kota;
-
-    // }
 
     // Getters and Setters
     public Integer getId() {

@@ -1,19 +1,22 @@
 package com.example.demo.model;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalDate;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumns;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-
 
 @Entity
 public class Proyek {
@@ -21,22 +24,33 @@ public class Proyek {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
 
-    private String nama_proyek;
+   private String nama_proyek;
     private String client;
-    private LocalDateTime tgl_mulai;
-    private LocalDateTime tgl_selesai;
+
+    @JsonFormat(pattern="dd MMMM yyyy")
+    private LocalDate tgl_mulai;
+
+    @JsonFormat(pattern="dd MMMM yyyy")
+    private LocalDate tgl_selesai;
+
     private String pimpinan_proyek;
     private String keterangan;
-    private Timestamp create_at;
 
+    @CreationTimestamp
+    @Column(updatable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd MMMM yyyy HH:mm:s")
+    private Timestamp create_at;
 
     @ManyToMany
     @JoinTable(name = "proyek_lokasi", joinColumns = @JoinColumn(name = "proyek_id"), inverseJoinColumns = @JoinColumn(name = "lokasi_id"))
     private List<Lokasi> lokasi;
 
-
     // Constructor
-    public Proyek(String nama_proyek, String client, LocalDateTime tgl_mulai, LocalDateTime tgl_selesai,
+    public Proyek() {
+
+    }
+
+    public Proyek(String nama_proyek, String client, LocalDate tgl_mulai, LocalDate tgl_selesai,
             String pimpinan_proyek, String keterangan) {
         this.nama_proyek = nama_proyek;
         this.client = client;
@@ -45,7 +59,6 @@ public class Proyek {
         this.pimpinan_proyek = pimpinan_proyek;
         this.keterangan = keterangan;
     }
-
 
     // Getters and Setters
     public Integer getId() {
@@ -72,19 +85,19 @@ public class Proyek {
         this.client = client;
     }
 
-    public LocalDateTime getTgl_mulai() {
+    public LocalDate getTgl_mulai() {
         return tgl_mulai;
     }
 
-    public void setTgl_mulai(LocalDateTime tgl_mulai) {
+    public void setTgl_mulai(LocalDate tgl_mulai) {
         this.tgl_mulai = tgl_mulai;
     }
 
-    public LocalDateTime getTgl_selesai() {
+    public LocalDate getTgl_selesai() {
         return tgl_selesai;
     }
 
-    public void setTgl_selesai(LocalDateTime tgl_selesai) {
+    public void setTgl_selesai(LocalDate tgl_selesai) {
         this.tgl_selesai = tgl_selesai;
     }
 

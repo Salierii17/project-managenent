@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.Lokasi;
 import com.example.demo.model.Proyek;
 import com.example.demo.repository.ProyekRepo;
 
@@ -22,16 +23,21 @@ public class ProyekService {
         return proyekRepo.findAll();
     }
 
-    public Proyek updateProyek(Proyek Proyek) {
-        return proyekRepo.save(Proyek);
+    public Proyek updateProyek(Integer id, Proyek proyek) {
+        if (proyekRepo.existsById(id)) {
+            proyek.setId(id); // Ensure the ID is set on the entity
+            return proyekRepo.save(proyek);
+        } else {
+            throw new RuntimeException("Proyek with id " + id + " not found");
+        }
     }
 
     public void deleteById(Integer id) {
         proyekRepo.deleteById(id);
     }
 
-    public Proyek findById(Integer id) {
-        return proyekRepo.findById(id).orElseThrow();
+    public Proyek getProyekById(Integer id) {
+        return proyekRepo.findById(id).orElseThrow(() -> new RuntimeException("Lokasi with id " + id + " not found"));
     }
 
 

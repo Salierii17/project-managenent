@@ -1,12 +1,16 @@
 package com.example.demo.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 
 @Entity
 public class Lokasi {
@@ -18,19 +22,23 @@ public class Lokasi {
     private String negara;
     private String provinsi;
     private String kota;
-    private Timestamp create_at;
-
-
-    // Constructor
-    public Lokasi(String nama_lokasi, String negara, String provinsi, String kota) {
-        this.nama_lokasi = nama_lokasi;
-        this.negara = negara;
-        this.provinsi = provinsi;
-        this.kota = kota;
-
+    
+    @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd MMMM yyyy HH:mm:ss")
+    private LocalDateTime created_at;
+    
+    public Lokasi() {
     }
 
-    
+    // Constructor
+    // public Lokasi(String nama_lokasi, String negara, String provinsi, String kota) {
+    //     this.nama_lokasi = nama_lokasi;
+    //     this.negara = negara;
+    //     this.provinsi = provinsi;
+    //     this.kota = kota;
+
+    // }
+
     // Getters and Setters
     public Integer getId() {
         return id;
@@ -72,11 +80,11 @@ public class Lokasi {
         this.kota = kota;
     }
 
-    public Timestamp getCreate_at() {
-        return create_at;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreate_at(Timestamp create_at) {
-        this.create_at = create_at;
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 }
